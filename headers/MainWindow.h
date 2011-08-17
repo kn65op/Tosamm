@@ -10,6 +10,7 @@
 
 #include <gtkmm-3.0/gtkmm.h>
 #include <string>
+#include <vector>
 
 class MainWindow : public Gtk::Window
 {
@@ -27,6 +28,8 @@ private:
   Gtk::HBox main_hbox;
   Glib::RefPtr<Gtk::ActionGroup> action_group;
   Glib::RefPtr<Gtk::UIManager> ui_manager;
+  Gtk::Table but_tab;
+  std::vector<Gtk::Button*> sam_buttons;
 };
 
 #endif	/* MAINWINDOW_H */

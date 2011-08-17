@@ -11,7 +11,9 @@
 
 using namespace std;
 
-MainWindow::MainWindow()
+MainWindow::MainWindow() :
+but_tab(3, 3, true),
+sam_buttons()
 {
   init();
   show_all_children(true);
@@ -59,7 +61,7 @@ void MainWindow::initMainVbox(void) //menu górne
   try
   {
     ui_manager->add_ui_from_string(ui_info);
-  }  catch (const Glib::Error& ex)
+  } catch (const Glib::Error& ex)
   {
     std::cerr << "building menus failed: " << ex.what();
   }
@@ -68,11 +70,18 @@ void MainWindow::initMainVbox(void) //menu górne
   {
     main_vbox.pack_start(*pMenuBar, Gtk::PACK_SHRINK);
   }
-
+  main_vbox.pack_start(main_hbox, Gtk::PACK_SHRINK);
 }
 
 void MainWindow::initMainHbox(void)
 {
-  main_vbox.pack_start(main_hbox, Gtk::PACK_SHRINK);
+  std::string tmp;
+  main_hbox.pack_end(but_tab, Gtk::PACK_SHRINK);
+  for (int i = 0; i < 9; i++)
+  {
+    tmp = i;
+    sam_buttons.push_back(new Gtk::Button(tmp));
+    but_tab.attach(*(sam_buttons[i]), i % 3 + static_cast<int> (i / 3), i % 3 + static_cast<int> (i / 3) + 1, i % 3, i % 3 + 1);
+  }
 }
 
