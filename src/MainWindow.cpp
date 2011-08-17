@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "../headers/MainWindow.h"
+#include "../headers/Helper.h"
 
 using namespace std;
 
@@ -79,9 +80,9 @@ void MainWindow::initMainHbox(void)
   main_hbox.pack_end(but_tab, Gtk::PACK_SHRINK);
   for (int i = 0; i < 9; i++)
   {
-    tmp = i;
+    tmp = Helper::itoa(i);
     sam_buttons.push_back(new Gtk::Button(tmp));
-    but_tab.attach(*(sam_buttons[i]), i % 3 + static_cast<int> (i / 3), i % 3 + static_cast<int> (i / 3) + 1, i % 3, i % 3 + 1);
+    but_tab.attach(*(sam_buttons[i]), i % 3, i % 3 + 1, i/ 3, i / 3 + 1);
   }
 }
 
