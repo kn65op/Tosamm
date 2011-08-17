@@ -25,6 +25,7 @@ void MainWindow::init(void)
 {
   initWindow();
   initMainVbox();
+  initMainHbox();
 }
 
 void MainWindow::initWindow(void)
@@ -70,5 +71,8 @@ void MainWindow::initMainVbox(void) //menu górne
 
 }
 
-
+void MainWindow::initMainHbox(void)
+{
+  main_vbox.pack_start(main_hbox, Gtk::PACK_SHRINK);
+}
 

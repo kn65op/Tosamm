@@ -20,9 +20,11 @@ private:
   void init(void);
   void initWindow(void);
   void initMainVbox(void);
+  void initMainHbox(void);
   
   std::string program_name;
-  Gtk::VBox main_vbox;
+  Gtk::VBox main_vbox; 
+  Gtk::HBox main_hbox;
   Glib::RefPtr<Gtk::ActionGroup> action_group;
   Glib::RefPtr<Gtk::UIManager> ui_manager;
 };
