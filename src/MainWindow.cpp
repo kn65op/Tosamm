@@ -76,13 +76,14 @@ void MainWindow::initMainVbox(void) //menu górne
 
 void MainWindow::initMainHbox(void)
 {
-  std::string tmp;
+  Gtk::Button* tmp;
   main_hbox.pack_end(but_tab, Gtk::PACK_SHRINK);
   for (int i = 0; i < 9; i++)
   {
-    tmp = Helper::itoa(i);
-    sam_buttons.push_back(new Gtk::Button(tmp));
-    but_tab.attach(*(sam_buttons[i]), i % 3, i % 3 + 1, i/ 3, i / 3 + 1);
-  }
+    tmp = new Gtk::Button(Helper::itoa(i));
+    tmp->set_border_width(5);
+    tmp->set_size_request(100, 75);
+    sam_buttons.push_back(tmp);
+    but_tab.attach(*(sam_buttons[i]), i % 3, i % 3 + 1, i/ 3, i / 3 + 1);  }
 }
 
