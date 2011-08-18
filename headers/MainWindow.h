@@ -25,7 +25,9 @@ private:
   void initMainHbox(void);
   
   //funkcje callback
-  void menu_quit();
+  void menu_file_quit();
+  void menu_file_new();
+  void menu_file_loadsample(int a);
   
   std::string program_name;
   Gtk::VBox main_vbox; 

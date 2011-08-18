@@ -45,8 +45,27 @@ void MainWindow::initMainVbox(void) //menu górne
   action_group = Gtk::ActionGroup::create();
   //menu plik
   action_group->add(Gtk::Action::create("MenuFile", "_Plik"));
-  action_group->add(Gtk::Action::create("New", Gtk::Stock::NEW));
-  action_group->add(Gtk::Action::create("Exit", Gtk::Stock::QUIT), sigc::mem_fun(*this, &MainWindow::menu_quit));
+  action_group->add(Gtk::Action::create("New", Gtk::Stock::NEW), sigc::mem_fun(*this, &MainWindow::menu_file_quit));
+  action_group->add(Gtk::Action::create("LoadSample", "Wczytaj sampel"));
+  action_group->add(Gtk::Action::create("LoadSample1", "Wczytaj sampel 1"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 1));
+  action_group->add(Gtk::Action::create("LoadSample2", "Wczytaj sampel 2"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 2));
+  action_group->add(Gtk::Action::create("LoadSample3", "Wczytaj sampel 3"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 3));
+  action_group->add(Gtk::Action::create("LoadSample4", "Wczytaj sampel 4"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 4));
+  action_group->add(Gtk::Action::create("LoadSample5", "Wczytaj sampel 5"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 5));
+  action_group->add(Gtk::Action::create("LoadSample6", "Wczytaj sampel 6"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 6));
+  action_group->add(Gtk::Action::create("LoadSample7", "Wczytaj sampel 7"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 7));
+  action_group->add(Gtk::Action::create("LoadSample8", "Wczytaj sampel 8"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 8));
+  action_group->add(Gtk::Action::create("LoadSample9", "Wczytaj sampel 9"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 9));
+  //action_group->add(Gtk::Action::create("LoadSample1", Gtk::Stock::NEW), sigc::mem_fun(*this, &MainWindow::menu_file_loadsample)(1));
+  /*/action_group->add(Gtk::Action::create("LoadSample2", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
+  action_group->add(Gtk::Action::create("LoadSample3", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
+  action_group->add(Gtk::Action::create("LoadSample4", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
+  action_group->add(Gtk::Action::create("LoadSample5", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
+  action_group->add(Gtk::Action::create("LoadSample6", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
+  action_group->add(Gtk::Action::create("LoadSample7", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
+  action_group->add(Gtk::Action::create("LoadSample8", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
+  action_group->add(Gtk::Action::create("LoadSample9", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));*/
+  action_group->add(Gtk::Action::create("Exit", Gtk::Stock::QUIT), sigc::mem_fun(*this, &MainWindow::menu_file_quit));
 
   //tworzenie uimanager
   ui_manager = Gtk::UIManager::create();
@@ -57,6 +76,18 @@ void MainWindow::initMainVbox(void) //menu górne
           " <menubar name='MenuBar'>"
           "   <menu action='MenuFile'>"
           "     <menuitem action='New'/>"
+          "     <separator/>"
+          "     <menu action='LoadSample'>"
+          "       <menuitem action='LoadSample1'/>"
+          "       <menuitem action='LoadSample2'/>"
+          "       <menuitem action='LoadSample3'/>"
+          "       <menuitem action='LoadSample4'/>"
+          "       <menuitem action='LoadSample5'/>"
+          "       <menuitem action='LoadSample6'/>"
+          "       <menuitem action='LoadSample7'/>"
+          "       <menuitem action='LoadSample8'/>"
+          "       <menuitem action='LoadSample9'/>"
+          "       </menu>"
           "     <separator/>"
           "     <menuitem action='Exit'/>"
           "   </menu>"
@@ -87,11 +118,16 @@ void MainWindow::initMainHbox(void)
     tmp->set_border_width(5);
     tmp->set_size_request(100, 75);
     sam_buttons.push_back(tmp);
-    but_tab.attach(*(sam_buttons[i]), i % 3, i % 3 + 1, i/ 3, i / 3 + 1);  }
+    but_tab.attach(*(sam_buttons[i]), i % 3, i % 3 + 1, i / 3, i / 3 + 1);
+  }
 }
 
-
-void MainWindow::menu_quit()
+void MainWindow::menu_file_quit()
 {
   hide();
+}
+
+void MainWindow::menu_file_loadsample(int a)
+{
+  std::cout << a << "\n";
 }
