@@ -27,7 +27,9 @@ private:
   //funkcje callback
   void menu_file_quit();
   void menu_file_new();
-  void menu_file_loadsample(int a);
+  void menu_file_loadsample(int nr);
+  
+  void sample_button_pushed(int nr);
   
   std::string program_name;
   Gtk::VBox main_vbox; 

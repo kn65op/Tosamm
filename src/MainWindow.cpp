@@ -56,15 +56,6 @@ void MainWindow::initMainVbox(void) //menu górne
   action_group->add(Gtk::Action::create("LoadSample7", "Wczytaj sampel 7"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 7));
   action_group->add(Gtk::Action::create("LoadSample8", "Wczytaj sampel 8"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 8));
   action_group->add(Gtk::Action::create("LoadSample9", "Wczytaj sampel 9"), sigc::bind(sigc::mem_fun(*this, &MainWindow::menu_file_loadsample), 9));
-  //action_group->add(Gtk::Action::create("LoadSample1", Gtk::Stock::NEW), sigc::mem_fun(*this, &MainWindow::menu_file_loadsample)(1));
-  /*/action_group->add(Gtk::Action::create("LoadSample2", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
-  action_group->add(Gtk::Action::create("LoadSample3", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
-  action_group->add(Gtk::Action::create("LoadSample4", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
-  action_group->add(Gtk::Action::create("LoadSample5", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
-  action_group->add(Gtk::Action::create("LoadSample6", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
-  action_group->add(Gtk::Action::create("LoadSample7", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
-  action_group->add(Gtk::Action::create("LoadSample8", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));
-  action_group->add(Gtk::Action::create("LoadSample9", Gtk::Stock::NEW), sigc::mem_fun<int>(*this, &MainWindow::menu_file_loadsample, 2));*/
   action_group->add(Gtk::Action::create("Exit", Gtk::Stock::QUIT), sigc::mem_fun(*this, &MainWindow::menu_file_quit));
 
   //tworzenie uimanager
@@ -114,9 +105,12 @@ void MainWindow::initMainHbox(void)
   main_hbox.pack_end(but_tab, Gtk::PACK_SHRINK);
   for (int i = 0; i < 9; i++)
   {
-    tmp = new Gtk::Button(Helper::itoa(i));
+    tmp = new Gtk::Button("_" + Helper::itoa(i + 1));
+    tmp->set_use_underline(true);
     tmp->set_border_width(5);
     tmp->set_size_request(100, 75);
+    tmp->signal_activate().connect(sigc::bind(sigc::mem_fun(*this, &MainWindow::sample_button_pushed), i+1));
+    tmp->signal_pressed().connect(sigc::bind(sigc::mem_fun(*this, &MainWindow::sample_button_pushed), i+1));
     sam_buttons.push_back(tmp);
     but_tab.attach(*(sam_buttons[i]), i % 3, i % 3 + 1, i / 3, i / 3 + 1);
   }
@@ -124,10 +118,18 @@ void MainWindow::initMainHbox(void)
 
 void MainWindow::menu_file_quit()
 {
+  //TODO:  sprawdzanie zapisu
   hide();
 }
 
-void MainWindow::menu_file_loadsample(int a)
+void MainWindow::menu_file_loadsample(int nr)
 {
-  std::cout << a << "\n";
+  //TODO: wczytywanie sampli
+  std::cout << "load: " << nr << "\n";
+}
+
+void MainWindow::sample_button_pushed(int nr)
+{
+  //TODO: granie sampla
+  std::cout << "play: " << nr << "\n";
 }
