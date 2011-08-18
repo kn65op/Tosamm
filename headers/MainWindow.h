@@ -11,6 +11,7 @@
 #include <gtkmm-3.0/gtkmm.h>
 #include <string>
 #include <vector>
+#include "Sampler.h"
 
 class MainWindow : public Gtk::Window
 {
@@ -38,6 +39,9 @@ private:
   Glib::RefPtr<Gtk::UIManager> ui_manager;
   Gtk::Table but_tab;
   std::vector<Gtk::Button*> sam_buttons;
+  Gtk::Statusbar status_bar;
+  
+  Sampler sampler;
 };
 
 #endif	/* MAINWINDOW_H */

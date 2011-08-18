@@ -14,7 +14,8 @@ using namespace std;
 
 MainWindow::MainWindow() :
 but_tab(3, 3, true),
-sam_buttons()
+sam_buttons(),
+status_bar()
 {
   init();
   show_all_children(true);
@@ -97,6 +98,10 @@ void MainWindow::initMainVbox(void) //menu górne
     main_vbox.pack_start(*pMenuBar, Gtk::PACK_SHRINK);
   }
   main_vbox.pack_start(main_hbox, Gtk::PACK_SHRINK);
+
+  //Status bar
+  main_vbox.pack_end(status_bar);
+
 }
 
 void MainWindow::initMainHbox(void)
@@ -109,8 +114,8 @@ void MainWindow::initMainHbox(void)
     tmp->set_use_underline(true);
     tmp->set_border_width(5);
     tmp->set_size_request(100, 75);
-    tmp->signal_activate().connect(sigc::bind(sigc::mem_fun(*this, &MainWindow::sample_button_pushed), i+1));
-    tmp->signal_pressed().connect(sigc::bind(sigc::mem_fun(*this, &MainWindow::sample_button_pushed), i+1));
+    tmp->signal_activate().connect(sigc::bind(sigc::mem_fun(*this, &MainWindow::sample_button_pushed), i + 1));
+    tmp->signal_pressed().connect(sigc::bind(sigc::mem_fun(*this, &MainWindow::sample_button_pushed), i + 1));
     sam_buttons.push_back(tmp);
     but_tab.attach(*(sam_buttons[i]), i % 3, i % 3 + 1, i / 3, i / 3 + 1);
   }
