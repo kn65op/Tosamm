@@ -15,7 +15,8 @@ using namespace std;
 MainWindow::MainWindow() :
 but_tab(3, 3, true),
 sam_buttons(),
-status_bar()
+status_bar(),
+sampler()
 {
   init();
   show_all_children(true);
@@ -100,8 +101,7 @@ void MainWindow::initMainVbox(void) //menu górne
   main_vbox.pack_start(main_hbox, Gtk::PACK_SHRINK);
 
   //Status bar
-  main_vbox.pack_end(status_bar);
-
+  main_vbox.pack_end(status_bar, Gtk::PACK_SHRINK);
 }
 
 void MainWindow::initMainHbox(void)
@@ -137,4 +137,5 @@ void MainWindow::sample_button_pushed(int nr)
 {
   //TODO: granie sampla
   std::cout << "play: " << nr << "\n";
+  status_bar.push("play: " + Helper::itoa(nr), 0);
 }

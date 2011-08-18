@@ -7,6 +7,8 @@
 
 #include "../headers/Sampler.h"
 
+#include <iostream>
+
 using namespace std;
 
 Sampler::Sampler()
