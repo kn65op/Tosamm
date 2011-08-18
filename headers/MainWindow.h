@@ -18,10 +18,14 @@ public:
   MainWindow();
   ~MainWindow();
 private:
+  //inicjalizatory
   void init(void);
   void initWindow(void);
   void initMainVbox(void);
   void initMainHbox(void);
+  
+  //funkcje callback
+  void menu_quit();
   
   std::string program_name;
   Gtk::VBox main_vbox; 

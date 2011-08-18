@@ -41,11 +41,14 @@ void MainWindow::initWindow(void)
 
 void MainWindow::initMainVbox(void) //menu górne
 {
+  //przyciski menu
   action_group = Gtk::ActionGroup::create();
-  action_group->add(Gtk::Action::create("MenuFile", "_File"));
+  //menu plik
+  action_group->add(Gtk::Action::create("MenuFile", "_Plik"));
   action_group->add(Gtk::Action::create("New", Gtk::Stock::NEW));
-  action_group->add(Gtk::Action::create("Exit", Gtk::Stock::QUIT));
+  action_group->add(Gtk::Action::create("Exit", Gtk::Stock::QUIT), sigc::mem_fun(*this, &MainWindow::menu_quit));
 
+  //tworzenie uimanager
   ui_manager = Gtk::UIManager::create();
   ui_manager->insert_action_group(action_group);
   add_accel_group(ui_manager->get_accel_group());
@@ -87,3 +90,8 @@ void MainWindow::initMainHbox(void)
     but_tab.attach(*(sam_buttons[i]), i % 3, i % 3 + 1, i/ 3, i / 3 + 1);  }
 }
 
+
+void MainWindow::menu_quit()
+{
+  hide();
+}
