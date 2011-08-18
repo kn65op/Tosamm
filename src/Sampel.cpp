@@ -9,8 +9,9 @@
 
 using namespace std;
 
-Sampel::Sampel()
+Sampel::Sampel(std::string File)
 {
+  //TODO: wczytywanie pliku
 }
 
 Sampel::Sampel(const Sampel& orig)
@@ -21,3 +22,13 @@ Sampel::~Sampel()
 {
 }
 
+void Sampel::play()
+{
+  //TODO: granie sampla
+  
+}
+
+void Sampel::load(std::string)
+{
+  //TODO: wczytywanie sampla
+}

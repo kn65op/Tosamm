@@ -17,6 +17,11 @@ public:
   Sampler();
   Sampler(const Sampler& orig);
   ~Sampler();
+  
+  /* Funkcja grająca dany sampel*/
+  bool playSound(int i);
+  /* Funkcja wczytująca dany sampel*/
+  bool loadSound(int i, std::string file);
 private:
   std::vector<Sampel*> samples;
   int no_samples;

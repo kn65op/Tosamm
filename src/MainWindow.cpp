@@ -129,13 +129,25 @@ void MainWindow::menu_file_quit()
 
 void MainWindow::menu_file_loadsample(int nr)
 {
-  //TODO: wczytywanie sampli
-  std::cout << "load: " << nr << "\n";
+  //TODO: okienko do pliku
+  if (sampler.loadSound(nr, ""))
+  {
+    status_bar.push("Wczytano sampel: " + Helper::itoa(nr), 0);
+  }
+  else
+  {
+    status_bar.push("Nie udało się wczytać sampla: " + Helper::itoa(nr), 0);
+  }
 }
 
 void MainWindow::sample_button_pushed(int nr)
 {
-  //TODO: granie sampla
-  std::cout << "play: " << nr << "\n";
-  status_bar.push("play: " + Helper::itoa(nr), 0);
+  if (sampler.playSound(nr))
+  {
+    status_bar.push("play: " + Helper::itoa(nr), 0);
+  }
+  else
+  {
+    status_bar.push("Nie ma sampla pod numerem " + Helper::itoa(nr), 0);
+  }
 }

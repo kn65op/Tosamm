@@ -8,6 +8,7 @@
 #include "../headers/Sampler.h"
 
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -32,3 +33,38 @@ Sampler::~Sampler()
   }
 }
 
+bool Sampler::playSound(int i)
+{
+  try
+  {
+    if (samples[i])
+    {
+      samples[i]->play();
+      return true;
+    }
+  }
+  catch (std::out_of_range oor)
+  {
+  }
+  return false;
+}
+
+bool Sampler::loadSound(int i, std::string file)
+{
+  try
+  {
+    if (!samples[i])
+    {
+      samples[i] = new Sampel(file);
+    }
+    else
+    {
+      samples[i]->load(file);
+    }
+  }
+  catch (std::out_of_range oor)
+  {
+    return false;
+  }
+  return true;
+}
