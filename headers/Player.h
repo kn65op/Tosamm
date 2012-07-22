@@ -9,15 +9,20 @@
 #define	PLAYER_H
 
 #include <gstreamer-0.10/gst/gst.h>
+#include <string>
 
 class Player
 {
 public:
   Player();
   Player(const Player& orig);
-  virtual ~Player();
+  ~Player();
+  
+  bool play(std::string file);
 private:
-  GstElement playbin;
+  GstElement *playbin;
+  
+  int bus_callback(GstBus* bus, GstMessage *mes, gpointer data);
 };
 
 #endif	/* PLAYER_H */
